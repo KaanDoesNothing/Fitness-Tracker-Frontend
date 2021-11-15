@@ -8,6 +8,7 @@ import axios from "axios";
 import Navbar from "./components/Navbar.vue";
 import router from "./router";
 import {useRouter} from "vue-router";
+import {setDarkMode} from "./utils";
 
 export default defineComponent({
   components: {Navbar},
@@ -19,7 +20,6 @@ export default defineComponent({
 
     async function handleAuth() {
       let token = (await Storage.get({key: "token"})).value;
-      console.log(`token: ${token}`);
 
       let isMobile = isMobileDevice();
 
@@ -43,14 +43,7 @@ export default defineComponent({
     function responsive() {
       let isMobile = isMobileDevice();
 
-      let mode = getPreferredColorScheme();
-
-      if(mode === "dark") {
-        //@ts-ignore
-        document.querySelector("body").classList.add("bg-black");
-      }
-
-      user.$patch({isMobile, isDarkMode: mode === "dark"});
+      user.$patch({isMobile});
     }
 
     function getPreferredColorScheme() {
@@ -64,7 +57,37 @@ export default defineComponent({
       return "light";
     }
 
+    user.$subscribe(async (mutation: any) => {
+      let payload = mutation.payload;
+      let events = mutation.events;
+
+      if(payload && payload.isDarkMode) {
+        // console.log("Payload based");
+        setDarkMode(payload.isDarkMode);
+
+        await Storage.set({key: "darkmode", value: payload.isDarkMode});
+      }else if(events && events.key && events.key === "isDarkMode") {
+        // console.log("Event based");
+        setDarkMode(events.newValue);
+        await Storage.set({key: "darkmode", value: events.newValue});
+      }
+    });
+
+    async function initTheme() {
+      let darkMode = await Storage.get({key: "darkmode"});
+
+      if(darkMode.value !== null) {
+        user.$patch({isDarkMode: darkMode.value === "true"});
+      }else {
+        let mode = getPreferredColorScheme();
+
+        user.$patch({isDarkMode: mode === "dark"});
+      }
+    }
+
     responsive();
+
+    initTheme();
 
     handleAuth().then(() => {finishedLoading.value = true});
 

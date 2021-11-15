@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./pages/Home.vue";
 import Auth from "./pages/Auth.vue";
 import Dashboard from "./pages/Dashboard.vue";
+import Settings from "./pages/settings.vue";
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         path: "/dashboard/:tab",
         name: "Dashboard",
         component: Dashboard
+    },
+    {
+        path: "/settings",
+        name: "Settings",
+        component: Settings
     }
 ];
 

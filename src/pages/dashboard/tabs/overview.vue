@@ -29,9 +29,9 @@
 <!--    </sui-card>-->
   </div>
 
-  <div class="p-5 text-center">
-    <button class="ui button red" @click.prevent="logout">Logout</button>
-  </div>
+<!--  <div class="p-5 text-center">-->
+<!--    <button class="ui button red" @click.prevent="logout">Logout</button>-->
+<!--  </div>-->
 
   <sui-dimmer :active="!workouts && !exerciseCount">
     <sui-loader></sui-loader>
@@ -50,7 +50,6 @@ export default {
   name: "overview",
   setup() {
     const user = useUserStore();
-    const router = useRouter();
 
     const exerciseCount = ref(0);
     const workouts = ref([]);
@@ -69,19 +68,10 @@ export default {
       exerciseCount.value = res.data.exercises.length;
     }
 
-    async function logout() {
-      // localStorage.removeItem("token");
-
-      await Storage.remove({key: "token"});
-      user.$patch({token: undefined});
-
-      router.push("/");
-    }
-
     fetchWorkouts();
     fetchExercises();
 
-    return {exerciseCount, workouts, logout}
+    return {exerciseCount, workouts}
   }
 }
 </script>

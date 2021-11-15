@@ -1,5 +1,19 @@
 import momentjs from "moment";
 
+export let setDarkMode = (darkmode: boolean) => {
+    if(darkmode === true) {
+        //@ts-ignore
+        document.querySelector("body").classList.remove("bg-white");
+        //@ts-ignore
+        document.querySelector("body").classList.add("bg-black");
+    }else {
+        //@ts-ignore
+        document.querySelector("body").classList.remove("bg-black");
+        //@ts-ignore
+        document.querySelector("body").classList.add("bg-white");
+    }
+}
+
 export let capitalizeFirst = (input: string) => {
     return input.charAt(0).toUpperCase() + input.slice(1);
 }
