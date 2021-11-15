@@ -1,0 +1,1 @@
+export let api = window.location.origin === "http://localhost:5555" ? "http://localhost:5555" : "https://api.fitness.kaanlikescoding.me";
