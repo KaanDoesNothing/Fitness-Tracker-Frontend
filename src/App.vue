@@ -62,13 +62,14 @@ export default defineComponent({
       let events = mutation.events;
 
       if(payload && payload.isDarkMode) {
-        // console.log("Payload based");
+        console.log("Payload based", payload.isDarkMode);
         setDarkMode(payload.isDarkMode);
 
         await Storage.set({key: "darkmode", value: payload.isDarkMode});
       }else if(events && events.key && events.key === "isDarkMode") {
-        // console.log("Event based");
+        console.log("Event based", events.newValue);
         setDarkMode(events.newValue);
+
         await Storage.set({key: "darkmode", value: events.newValue});
       }
     });
