@@ -26,6 +26,7 @@
 
 <script>
 import {computed, defineComponent, ref} from "vue";
+import {Storage} from "@capacitor/storage";
 import {useUserStore} from "../stores/user";
 import axios from "axios";
 import {useRouter} from "vue-router";
@@ -51,7 +52,10 @@ export default defineComponent({
         if (res.data.error) this.error = res.data.error;
 
         if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
+          await Storage.set({
+            key: "token",
+            value: res.data.token,
+          });
 
           user.$patch({token: res.data.token});
 
@@ -63,7 +67,10 @@ export default defineComponent({
         if (res.data.error) this.error = res.data.error;
 
         if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
+          await Storage.set({
+            key: "token",
+            value: res.data.token,
+          });
 
           user.$patch({token: res.data.token});
 

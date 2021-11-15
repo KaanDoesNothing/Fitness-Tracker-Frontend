@@ -1,7 +1,7 @@
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
+import {Storage} from "@capacitor/storage";
 import {useUserStore} from "./stores/user";
-
 
 import axios from "axios";
 
@@ -15,8 +15,11 @@ export default defineComponent({
     const user = useUserStore();
     const router = useRouter();
 
+    let finishedLoading = ref(false);
+
     async function handleAuth() {
-      let token = localStorage.getItem("token");
+      let token = (await Storage.get({key: "token"})).value;
+      console.log(`token: ${token}`);
 
       let isMobile = isMobileDevice();
 
@@ -63,7 +66,9 @@ export default defineComponent({
 
     responsive();
 
-    handleAuth();
+    handleAuth().then(() => {finishedLoading.value = true});
+
+    return {finishedLoading}
   }
 });
 </script>
@@ -72,6 +77,14 @@ export default defineComponent({
 <!--}}-->
 
 <template>
-  <Navbar></Navbar>
-  <router-view></router-view>
+  <template v-if="finishedLoading">
+    <Navbar></Navbar>
+    <router-view></router-view>
+  </template>
+
+  <template v-if="!finishedLoading">
+    <sui-dimmer :active="true">
+      <sui-loader></sui-loader>
+    </sui-dimmer>
+  </template>
 </template>

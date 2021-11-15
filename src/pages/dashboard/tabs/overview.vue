@@ -44,6 +44,7 @@ import {ref} from "vue";
 import {useUserStore} from "../../../stores/user";
 import {useRouter} from "vue-router";
 import {api} from "../../../config";
+import {Storage} from "@capacitor/storage";
 
 export default {
   name: "overview",
@@ -68,8 +69,10 @@ export default {
       exerciseCount.value = res.data.exercises.length;
     }
 
-    function logout() {
-      localStorage.removeItem("token");
+    async function logout() {
+      // localStorage.removeItem("token");
+
+      await Storage.remove({key: "token"});
       user.$patch({token: undefined});
 
       router.push("/");

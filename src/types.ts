@@ -7,5 +7,6 @@ interface workout {
     set: number,
     duration: number,
     calories: number,
-    createdAt: number
+    createdAt: number,
+    timeAgo?: any
 }
