@@ -13,7 +13,7 @@
 
       <div class="flex flex-wrap items-center text-white">
         <div class="ui toggle checkbox">
-          <input type="checkbox" @change="darkmode" v-bind="user.isDarkMode">
+          <input type="checkbox" @change.prevent="darkmode" v-model="user.isDarkMode">
           <label></label>
         </div>
       </div>
