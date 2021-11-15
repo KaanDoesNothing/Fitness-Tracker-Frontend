@@ -90,7 +90,7 @@ import {computed, defineComponent, ref} from "vue";
 import axios from "axios";
 import {useUserStore} from "../../../stores/user";
 
-import {capitalizeFirst} from "../../../utils";
+import {capitalizeFirst, sortWorkouts} from "../../../utils";
 import {api} from "../../../config";
 
 export default defineComponent({
@@ -107,15 +107,17 @@ export default defineComponent({
 
     async function fetchWorkouts() {
       const res = await axios.post(`${api}/api/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
-      const resSorted = await axios.post(`${api}/api/user/workouts/sorted`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      // const resSorted = await axios.post(`${api}/api/user/workouts/sorted`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.workouts) {
         workouts.value = res.data.workouts;
       }
 
-      if(resSorted.data.workouts) {
-        sortedWorkouts.value = resSorted.data.workouts;
-      }
+      sortedWorkouts.value = sortWorkouts(res.data.workouts);
+
+      // if(resSorted.data.workouts) {
+      //   // sortedWorkouts.value = resSorted.data.workouts;
+      // }
     }
 
     async function fetchExercises() {
@@ -129,7 +131,7 @@ export default defineComponent({
     }
 
     async function handleForm() {
-      const res = await axios.post(`${api}/api/user/workouts/create`, form.value, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/api/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
         await fetchWorkouts();
@@ -139,9 +141,8 @@ export default defineComponent({
       }
     }
 
-    fetchWorkouts().then(() => {
-      // sortWorkouts();
-    });
+    fetchWorkouts();
+
     fetchExercises();
 
     return {workouts, exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
