@@ -61,11 +61,11 @@ export default defineComponent({
       let darkMode = await Storage.get({key: "darkmode"});
 
       if(darkMode.value !== null) {
-        user.$patch({isDarkMode: darkMode.value === "true"});
+        user.setDarkMode(darkMode.value === "true");
       }else {
         let mode = getPreferredColorScheme();
 
-        user.$patch({isDarkMode: mode === "dark"});
+        user.setDarkMode(mode === "dark");
       }
     }
 
@@ -74,23 +74,6 @@ export default defineComponent({
     initTheme();
 
     handleAuth().then(() => {finishedLoading.value = true});
-
-    user.$subscribe(async (mutation: any) => {
-      let payload = mutation.payload;
-      let events = mutation.events;
-
-      if(payload && payload.isDarkMode) {
-        console.log("Payload based", payload.isDarkMode);
-        setDarkMode(payload.isDarkMode);
-
-        await Storage.set({key: "darkmode", value: payload.isDarkMode});
-      }else if(events && events.key && events.key === "isDarkMode") {
-        console.log("Event based", events.newValue);
-        setDarkMode(events.newValue);
-
-        await Storage.set({key: "darkmode", value: events.newValue});
-      }
-    });
 
     return {finishedLoading}
   }

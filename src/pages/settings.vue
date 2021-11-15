@@ -13,7 +13,7 @@
 
       <div class="flex flex-wrap items-center text-white">
         <div class="ui toggle checkbox">
-          <input type="checkbox" v-model="user.isDarkMode">
+          <input type="checkbox" @change="darkmode">
           <label></label>
         </div>
       </div>
@@ -45,16 +45,19 @@ export default defineComponent({
     const user = useUserStore();
     const router = useRouter();
 
-    async function logout() {
-      // localStorage.removeItem("token");
+    function darkmode(e) {
+      console.log(e);
+      user.setDarkMode(e.target.checked);
+    }
 
+    async function logout() {
       await Storage.remove({key: "token"});
       user.$patch({token: undefined});
 
       router.push("/");
     }
 
-    return {user: computed(() => user), logout};
+    return {user: computed(() => user), logout, darkmode};
   }
 });
 </script>
