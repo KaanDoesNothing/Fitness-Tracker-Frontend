@@ -63,6 +63,8 @@ import {defineComponent, ref} from "vue";
 import axios from "axios";
 import {useRoute} from "vue-router";
 
+import {api} from "../../../../config"
+
 export default defineComponent({
   name: "view",
   setup() {
