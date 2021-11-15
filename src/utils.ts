@@ -7,7 +7,7 @@ export let capitalizeFirst = (input: string) => {
 export let sortWorkouts = (workouts: any) => {
     let final: any = {};
 
-    workouts.forEach((workout: any) => {
+    workouts.forEach((workout: workout) => {
         let date = new Date(workout.createdAt);
 
         let workoutDate = date.toLocaleString().split(", ")[0];
