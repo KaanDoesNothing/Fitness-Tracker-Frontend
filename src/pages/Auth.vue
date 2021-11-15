@@ -14,7 +14,9 @@
         <input name="password" type="password" required="required" v-model="form.password"/>
       </div>
 
-      <button class="ui button" type="submit">Sign in</button>
+
+      <button class="ui button" type="submit" v-if="type === 'login'">Sign in</button>
+      <button class="ui button" type="submit" v-if="type === 'signup'">Sign up</button>
     </form>
 
     <button :class="{'text-white': user.isDarkMode}" class="m-5" v-if="type === 'signup'" @click.prevent="type = 'login'">Already have an account, click here!</button>
