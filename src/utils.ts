@@ -4,9 +4,10 @@ export let capitalizeFirst = (input: string) => {
     return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
-export let sortWorkouts = (workouts) => {
-    let final = {};
-    workouts.forEach(workout => {
+export let sortWorkouts = (workouts: any) => {
+    let final: any = {};
+
+    workouts.forEach((workout: any) => {
         let date = new Date(workout.createdAt);
 
         let workoutDate = date.toLocaleString().split(", ")[0];
@@ -24,7 +25,7 @@ export let sortWorkouts = (workouts) => {
 
         workout.timeAgo = momentjs(workout.createdAt).fromNow();
 
-        let sorted = final[dateString];
+        let sorted: any = final[dateString];
 
         if(!sorted) final[dateString] = {date: dateString, workouts: []};
 
