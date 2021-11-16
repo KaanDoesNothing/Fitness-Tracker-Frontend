@@ -2,6 +2,7 @@
   <div class="p-5">
     <div class="flex justify-center">
       <button class="ui positive button fluid" @click.prevent="addWorkoutModal = true; error = false">Add</button>
+<!--      <button class="p-3 bg-white w-screen rounded-lg text-white" style="background-color: #21BA45;">Add</button>-->
     </div>
 
     <sui-dimmer :active="sortedWorkouts === undefined">
@@ -12,14 +13,24 @@
       <h2 class="header">{{day.date}}</h2>
       <sui-list relaxed>
         <sui-list-item v-for="workout in day.workouts">
-          <sui-list-content>
+          <sui-list-content v-if="user.settings.compactMode">
+            <router-link class="font-sans text-black" :to="`/dashboard/workouts/${workout.id}`">{{ workout.name }}
+              -
+
+              <label class="text-gray-500">{{workout.timestamp + ' '}}</label>
+              <label class="text-gray-500" v-if="workout.type === 'weights'">({{workout.weight}}kg {{workout.reps}}x{{workout.sets}})</label>
+              <label class="text-gray-500" v-if="workout.type === 'cardio'">({{workout.calories}}cal {{workout.duration}}min)</label>
+            </router-link>
+          </sui-list-content>
+
+          <sui-list-content  v-if="!user.settings.compactMode">
             <router-link class="font-sans text-black" :to="`/dashboard/workouts/${workout.id}`">{{ workout.name }}</router-link>
-            <sui-list-description>
-              <label class="font-sans text-gray-500">{{workout.timeAgo}}
-                <label v-if="workout.type === 'weights'">({{workout.weight}}kg {{workout.reps}}x{{workout.sets}})</label>
-                <label v-if="workout.type === 'cardio'">({{workout.calories}}cal {{workout.duration}}min)</label>
-              </label>
-            </sui-list-description>
+              <sui-list-description>
+                <label class="font-sans text-gray-500">{{workout.timestamp}}
+                  <label v-if="workout.type === 'weights'">({{workout.weight}}kg {{workout.reps}}x{{workout.sets}})</label>
+                  <label v-if="workout.type === 'cardio'">({{workout.calories}}cal {{workout.duration}}min)</label>
+                </label>
+              </sui-list-description>
           </sui-list-content>
         </sui-list-item>
       </sui-list>
@@ -67,21 +78,8 @@
         </template>
 
         <button class="ui button green fluid" type="submit">Add</button>
-        <!--        <div class="field" hidden>-->
-<!--          <label>Note</label>-->
-<!--          <textarea class="ui" name="note"></textarea>-->
-<!--        </div>-->
       </form>
-
-<!--      <sui-button-group class="fluid">-->
-<!--        <sui-button color="green" @click.prevent="handleForm">Add</sui-button>-->
-<!--      </sui-button-group>-->
     </sui-modal-content>
-<!--    <sui-modal-actions>-->
-<!--      <sui-button-group class="fluid">-->
-<!--        <sui-button color="green" @click.prevent="handleForm">Add</sui-button>-->
-<!--      </sui-button-group>-->
-<!--    </sui-modal-actions>-->
   </sui-modal>
 </template>
 
@@ -145,7 +143,7 @@ export default defineComponent({
 
     fetchExercises();
 
-    return {workouts, exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
+    return {user: computed(() => user), exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
   }
 });
 </script>

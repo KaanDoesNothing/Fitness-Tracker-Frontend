@@ -4,7 +4,7 @@
   </div>
 
   <div class="p-5">
-    <nav class="p-5 m-2 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
+    <nav class="p-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
       <div class="flex flex-shrink-0 items-center text-white">
         <label class="text-gray-500">
           Dark Mode
@@ -19,17 +19,24 @@
       </div>
     </nav>
 
+    <nav class="p-5 mt-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
+      <div class="flex flex-shrink-0 items-center text-white">
+        <label class="text-gray-500">
+          Compact Mode
+        </label>
+      </div>
+
+      <div class="flex flex-wrap items-center text-white">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" @change.prevent="compactmode" v-model="user.settings.compactMode">
+          <label></label>
+        </div>
+      </div>
+    </nav>
+
     <div class="p-5 mt-40 text-center">
       <button class="ui button bg-gray-100" @click.prevent="logout">Logout</button>
     </div>
-<!--    <div class="p-5 m-2 border rounded-lg font-sans bg-gray-100">-->
-<!--      <label class="text-gray-500">-->
-<!--        Dark Mode-->
-<!--      </label>-->
-<!--      <div class="flex">-->
-<!--        <button class="ui button">Disable</button>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </template>
 
@@ -50,6 +57,13 @@ export default defineComponent({
       user.setDarkMode(e.target.checked);
     }
 
+    function compactmode() {
+      let settings = user.settings;
+      settings.compactMode = settings.compactMode;
+
+      user.setSettings(settings);
+    }
+
     async function logout() {
       await Storage.remove({key: "token"});
       user.$patch({token: undefined});
@@ -57,7 +71,7 @@ export default defineComponent({
       router.push("/");
     }
 
-    return {user: computed(() => user), logout, darkmode};
+    return {user: computed(() => user), logout, darkmode, compactmode};
   }
 });
 </script>

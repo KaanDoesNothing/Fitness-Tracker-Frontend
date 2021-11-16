@@ -38,6 +38,7 @@ export let sortWorkouts = (workouts: any) => {
         }
 
         workout.timeAgo = momentjs(workout.createdAt).fromNow();
+        workout.timestamp = `${date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`;
 
         let sorted: any = final[dateString];
 

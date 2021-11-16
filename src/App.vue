@@ -57,7 +57,7 @@ export default defineComponent({
       return "light";
     }
 
-    async function initTheme() {
+    async function init() {
       let darkMode = await Storage.get({key: "darkmode"});
 
       if(darkMode.value !== null) {
@@ -67,11 +67,17 @@ export default defineComponent({
 
         user.setDarkMode(mode === "dark");
       }
+
+      let settings = await Storage.get({key: "settings"});
+
+      if(settings.value) {
+        user.$patch({settings: JSON.parse(settings.value)});
+      }
     }
 
     responsive();
 
-    initTheme();
+    init();
 
     handleAuth().then(() => {finishedLoading.value = true});
 
