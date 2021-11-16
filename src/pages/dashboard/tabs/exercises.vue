@@ -5,7 +5,7 @@
     </div>
 
     <FItem v-slot:content :title="`${exercise.name} (${exercise.type})`" v-for="exercise in exercises">
-      <button class="text-gray-500">Edit</button>
+      <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">Edit</router-link>
     </FItem>
   </div>
 
