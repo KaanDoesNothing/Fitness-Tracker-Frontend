@@ -1,13 +1,11 @@
 <template>
   <div class="p-5 flex justify-center">
     <div class="mt-5 border rounded-lg p-2 border-gray-300 filter shadow-md bg-gray-100">
-      <sui-card-content>
         <sui-statistic-group class="flex justify-center">
-          <sui-statistic :value=workouts.length.toString() label="Workouts" />
+          <sui-statistic :value=workouts.length.toString() label="Workouts"></sui-statistic>
           <sui-statistic :value=exerciseCount.toString() label="Exercises" />
           <sui-statistic :value="`${workouts.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" label="Total Calories Burned" />
         </sui-statistic-group>
-      </sui-card-content>
     </div>
 <!--    <div class="ui card filter drop-shadow-md bg-gray-900">-->
 <!--      <div class="content">-->

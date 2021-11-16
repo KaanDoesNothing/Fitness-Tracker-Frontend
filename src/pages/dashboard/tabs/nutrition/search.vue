@@ -10,8 +10,7 @@
     <div v-for="product in results" class="p-5 mb-2 border rounded-lg font-sans bg-gray-100" :key="product._id">
       <router-link class="text-black" :to="`/dashboard/nutrition-view?id=${product.id}`">{{product.product_name}}</router-link>
       <br>
-      <label class="text-gray-500">- {{product.brands}} {{product.serving_size ? `, ${product.serving_size}` : ""}}
-      </label>
+      <label class="text-gray-500">- {{product.brands}} {{product.serving_size ? `, ${product.serving_size}` : ""}}</label>
     </div>
   </div>
 </template>
