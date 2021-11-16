@@ -49,3 +49,40 @@ export let sortWorkouts = (workouts: any) => {
 
     return final;
 }
+
+export let sortExercisesThisWeekForOverview = (workouts: any) => {
+    //@ts-ignore
+    let currentWeek = new Date().getWeek();
+
+    let res = workouts.map((workout: workout) => {
+        let date = new Date(workout.createdAt);
+
+        //@ts-ignore
+        if(date.getWeek() === currentWeek) return workout;
+    }).filter((res: any) => res);
+
+    return res;
+}
+
+export let sortWorkoutsThisWeekForOverview = (workouts: any) => {
+    //@ts-ignore
+    let currentWeek = new Date().getWeek();
+
+    let days: number[] = [];
+
+    let res = workouts.forEach((workout: workout) => {
+        let date = new Date(workout.createdAt);
+
+        //@ts-ignore
+        if(date.getWeek() === currentWeek) {
+            let day = date.getDay();
+            if(!days.includes(day)) {
+                days.push(day);
+            }else {
+                return;
+            }
+        }
+    });
+
+    return days;
+}
