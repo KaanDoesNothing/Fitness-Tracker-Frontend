@@ -19,8 +19,8 @@
       <button class="ui button" type="submit" v-if="type === 'signup'">Sign up</button>
     </form>
 
-    <button :class="{'text-white': user.isDarkMode}" class="m-5" v-if="type === 'signup'" @click.prevent="type = 'login'">Already have an account, click here!</button>
-    <button :class="{'text-white': user.isDarkMode}" class="m-5" v-if="type === 'login'" @click.prevent="type = 'signup'">Don't have an account yet?</button>
+    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'signup'" @click.prevent="type = 'login'">Already have an account, click here!</button>
+    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'login'" @click.prevent="type = 'signup'">Don't have an account yet?</button>
   </div>
 </template>
 

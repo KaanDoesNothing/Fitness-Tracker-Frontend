@@ -4,7 +4,7 @@
   </div>
 
   <div class="p-5">
-    <nav class="p-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
+    <div class="p-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
       <div class="flex flex-shrink-0 items-center text-white">
         <label class="text-gray-500">
           Dark Mode
@@ -17,9 +17,9 @@
           <label></label>
         </div>
       </div>
-    </nav>
+    </div>
 
-    <nav class="p-5 mt-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
+    <div class="p-5 mt-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
       <div class="flex flex-shrink-0 items-center text-white">
         <label class="text-gray-500">
           Compact Mode
@@ -32,7 +32,7 @@
           <label></label>
         </div>
       </div>
-    </nav>
+    </div>
 
     <div class="p-5 mt-40 text-center">
       <button class="ui button bg-gray-100" @click.prevent="logout">Logout</button>
@@ -59,7 +59,7 @@ export default defineComponent({
 
     function compactmode() {
       let settings = user.settings;
-      settings.compactMode = settings.compactMode;
+      settings.compactMode = user.settings.compactMode;
 
       user.setSettings(settings);
     }
