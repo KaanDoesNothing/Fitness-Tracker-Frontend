@@ -4,11 +4,11 @@
   </Navigation>
   <div class="p-5">
     <div class="flex justify-center">
-      <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">Add</button>
+      <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">{{  $t("actions.add") }}</button>
     </div>
 
     <FItem v-slot:content :title="`${exercise.name} (${exercise.type})`" v-for="exercise in exercises">
-      <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">Edit</router-link>
+      <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
     </FItem>
   </div>
 

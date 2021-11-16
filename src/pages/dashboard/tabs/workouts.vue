@@ -3,7 +3,7 @@
 
   <div class="p-5">
     <div class="flex justify-center">
-      <button class="ui positive button fluid" @click.prevent="addWorkoutModal = true; error = false">Add</button>
+      <button class="ui positive button fluid" @click.prevent="addWorkoutModal = true; error = false">{{  $t("actions.add") }}</button>
 <!--      <button class="p-3 bg-white w-screen rounded-lg text-white" style="background-color: #21BA45;">Add</button>-->
     </div>
 

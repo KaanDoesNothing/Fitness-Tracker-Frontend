@@ -5,6 +5,10 @@ export let locales = {
             workouts: "Workouts",
             exercises: "Exercises",
             nutrition: "Nutrition"
+        },
+        actions: {
+            add: "add",
+            edit: "edit"
         }
     },
     nl: {
@@ -13,6 +17,10 @@ export let locales = {
             workouts: "Sessies",
             exercises: "Oefeningen",
             nutrition: "Nutritie"
+        },
+        actions: {
+            add: "Toevoegen",
+            edit: "Bewerken"
         }
     }
 }

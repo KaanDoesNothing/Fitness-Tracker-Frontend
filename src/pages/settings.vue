@@ -18,6 +18,13 @@
       </div>
     </FItem>
 
+    <FItem title="Dutch Language" v-slot:content>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" @change.prevent="dutchmode" v-model="isDutch">
+        <label></label>
+      </div>
+    </FItem>
+
     <div class="p-5 mt-40 text-center">
       <button class="ui button bg-gray-100" @click.prevent="logout">Logout</button>
     </div>
@@ -53,6 +60,20 @@ export default defineComponent({
       user.setSettings(settings);
     }
 
+    async function dutchmode() {
+      let settings = user.settings;
+
+      if(settings.locale === "en") {
+        settings.locale = "nl";
+      }else {
+        settings.locale = "en";
+      }
+
+      await user.setSettings(settings);
+
+      window.location.reload();
+    }
+
     async function logout() {
       await Storage.remove({key: "token"});
       user.$patch({token: undefined});
@@ -60,7 +81,7 @@ export default defineComponent({
       router.push("/");
     }
 
-    return {user: computed(() => user), logout, darkmode, compactmode};
+    return {user: computed(() => user), logout, darkmode, compactmode, dutchmode, isDutch: computed(() => user.settings.locale === 'nl')};
   }
 });
 </script>
