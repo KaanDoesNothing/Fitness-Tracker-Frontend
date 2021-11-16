@@ -4,35 +4,19 @@
   </div>
 
   <div class="p-5">
-    <div class="p-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
-      <div class="flex flex-shrink-0 items-center text-white">
-        <label class="text-gray-500">
-          Dark Mode
-        </label>
+    <FItem title="Dark Mode" v-slot:content>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" @change.prevent="darkmode" v-model="user.isDarkMode">
+        <label></label>
       </div>
+    </FItem>
 
-      <div class="flex flex-wrap items-center text-white">
-        <div class="ui toggle checkbox">
-          <input type="checkbox" @change.prevent="darkmode" v-model="user.isDarkMode">
-          <label></label>
-        </div>
+    <FItem title="Compact Mode" v-slot:content>
+      <div class="ui toggle checkbox">
+        <input type="checkbox" @change.prevent="compactmode" v-model="user.settings.compactMode">
+        <label></label>
       </div>
-    </div>
-
-    <div class="p-5 mt-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between">
-      <div class="flex flex-shrink-0 items-center text-white">
-        <label class="text-gray-500">
-          Compact Mode
-        </label>
-      </div>
-
-      <div class="flex flex-wrap items-center text-white">
-        <div class="ui toggle checkbox">
-          <input type="checkbox" @change.prevent="compactmode" v-model="user.settings.compactMode">
-          <label></label>
-        </div>
-      </div>
-    </div>
+    </FItem>
 
     <div class="p-5 mt-40 text-center">
       <button class="ui button bg-gray-100" @click.prevent="logout">Logout</button>
@@ -46,8 +30,13 @@ import {useUserStore} from "../stores/user";
 import {Storage} from "@capacitor/storage";
 import {useRouter} from "vue-router";
 
+import FItem from "../components/ui/FItem.vue";
+
 export default defineComponent({
   name: "settings",
+  components: {
+    FItem
+  },
   setup() {
     const user = useUserStore();
     const router = useRouter();

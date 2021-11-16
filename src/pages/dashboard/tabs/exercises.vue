@@ -4,33 +4,10 @@
       <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">Add</button>
     </div>
 
-    <div class="p-5 mt-5 border rounded-lg font-sans bg-gray-100 flex flex-wrap items-center justify-between" v-for="exercise in exercises">
-      <div class="flex flex-shrink-0 items-center text-white">
-        <label class="text-gray-500">
-          {{exercise.name}} ({{exercise.type}})
-        </label>
-      </div>
-
-      <div class="flex flex-wrap items-center text-gray-500">
-        <button>Edit</button>
-      </div>
-    </div>
+    <FItem v-slot:content :title="`${exercise.name} (${exercise.type})`" v-for="exercise in exercises">
+      <button class="text-gray-500">Edit</button>
+    </FItem>
   </div>
-<!--    <sui-table celled>-->
-<!--      <sui-table-header>-->
-<!--        <sui-table-row>-->
-<!--          <sui-table-header-cell>Name</sui-table-header-cell>-->
-<!--          <sui-table-header-cell>Type</sui-table-header-cell>-->
-<!--        </sui-table-row>-->
-<!--      </sui-table-header>-->
-<!--      <sui-table-body>-->
-<!--        <sui-table-row v-for="exercise in exercises" :key="exercise.name">-->
-<!--          <sui-table-cell>{{ exercise.name }}</sui-table-cell>-->
-<!--          <sui-table-cell>{{ exercise.type }}</sui-table-cell>-->
-<!--        </sui-table-row>-->
-<!--      </sui-table-body>-->
-<!--    </sui-table>-->
-<!--  </div>-->
 
   <sui-modal v-model="addExerciseModal">
     <sui-modal-header>Add an exercise</sui-modal-header>
@@ -71,9 +48,11 @@ import {useUserStore} from "../../../stores/user";
 
 import {capitalizeFirst} from "../../../utils";
 import {api} from "../../../config";
+import FItem from "../../../components/ui/FItem.vue";
 
 export default defineComponent({
   name: "exercises",
+  components: {FItem},
   setup() {
     const user = useUserStore();
 
