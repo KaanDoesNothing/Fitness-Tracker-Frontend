@@ -17,6 +17,7 @@
     "pinia": "^2.0.2",
     "vue": "^3.2.16",
     "vue-fomantic-ui": "^0.11.0",
+    "vue-i18n": "^9.2.0-beta.19",
     "vue-router": "v4"
   },
   "devDependencies": {
