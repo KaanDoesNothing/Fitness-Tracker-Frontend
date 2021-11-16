@@ -9,9 +9,20 @@ import router from "./router";
 
 import App from "./App.vue";
 import {locales} from "./locales";
+import {Storage} from "@capacitor/storage";
+
+let settings = await Storage.get({key: "settings"});
+
+let locale = "en";
+
+if(settings.value) {
+    let parsed = JSON.parse(settings.value);
+
+    if(parsed.locale) locale = parsed.locale;
+}
 
 const i18n = VueI18n.createI18n({
-    locale: "en",
+    locale: locale,
     fallbackLocale: "en",
     messages: locales
 });
