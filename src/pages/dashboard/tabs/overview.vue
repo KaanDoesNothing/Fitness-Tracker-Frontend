@@ -1,4 +1,5 @@
 <template>
+  <Navigation></Navigation>
   <div class="p-5 flex justify-center">
     <div class="mt-5 border rounded-lg p-2 border-gray-300 filter shadow-md bg-gray-100">
       <h2 class="text-center">This week's statistics</h2>
@@ -11,43 +12,11 @@
   </div>
 
   <div class="p-5 flex justify-center">
-<!--    <div class="mt-5 border rounded-lg p-2 border-gray-300 filter shadow-md bg-gray-100">-->
-<!--      <h2 class="text-center">Other statistics</h2>-->
-<!--        <sui-statistic-group class="flex justify-center">-->
-<!--          <sui-statistic :value=workouts.length.toString() label="Workouts"></sui-statistic>-->
-<!--          <sui-statistic :value=exerciseCount.toString() label="Exercises" />-->
-<!--          <sui-statistic :value="`${workouts.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" label="Total Calories Burned" />-->
-<!--        </sui-statistic-group>-->
-<!--    </div>-->
-
-
-<!--    <div class="ui card filter drop-shadow-md bg-gray-900">-->
-<!--      <div class="content">-->
-<!--        <sui-statistic-group class="flex justify-center">-->
-<!--          <sui-statistic :value=workouts.length.toString() label="Workouts" />-->
-<!--          <sui-statistic :value=exerciseCount.toString() label="Exercises" />-->
-<!--          <sui-statistic :value="`${workouts.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" label="Total Calories Burned" />-->
-<!--        </sui-statistic-group>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <sui-card class="filter drop-shadow-md">-->
-<!--      <sui-card-content>-->
-<!--        <sui-statistic-group class="flex justify-center">-->
-<!--          <sui-statistic :value=workouts.length.toString() label="Workouts" />-->
-<!--          <sui-statistic :value=exerciseCount.toString() label="Exercises" />-->
-<!--          <sui-statistic :value="`${workouts.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" label="Total Calories Burned" />-->
-<!--        </sui-statistic-group>-->
-<!--      </sui-card-content>-->
-<!--    </sui-card>-->
-  </div>
-
-<!--  <div class="p-5 text-center">-->
-<!--    <button class="ui button red" @click.prevent="logout">Logout</button>-->
-<!--  </div>-->
 
   <sui-dimmer :active="!workouts && !exerciseCount">
     <sui-loader></sui-loader>
   </sui-dimmer>
+  </div>
 </template>
 
 <script>
@@ -58,9 +27,11 @@ import {useRouter} from "vue-router";
 import {api} from "../../../config";
 import {Storage} from "@capacitor/storage";
 import {sortExercisesThisWeekForOverview, sortWorkoutsThisWeekForOverview} from "../../../utils";
+import Navigation from "../navigation.vue";
 
 export default {
   name: "overview",
+  components: {Navigation},
   setup() {
     const user = useUserStore();
 

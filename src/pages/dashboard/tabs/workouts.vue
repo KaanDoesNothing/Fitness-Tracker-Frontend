@@ -1,4 +1,6 @@
 <template>
+  <Navigation></Navigation>
+
   <div class="p-5">
     <div class="flex justify-center">
       <button class="ui positive button fluid" @click.prevent="addWorkoutModal = true; error = false">Add</button>
@@ -90,9 +92,11 @@ import {useUserStore} from "../../../stores/user";
 
 import {capitalizeFirst, sortWorkouts} from "../../../utils";
 import {api} from "../../../config";
+import Navigation from "../navigation.vue";
 
 export default defineComponent({
-  name: "workouts",
+  name: "Workouts",
+  components: {Navigation},
   setup() {
     const user = useUserStore();
 

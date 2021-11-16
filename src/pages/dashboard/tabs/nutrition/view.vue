@@ -1,4 +1,6 @@
 <template>
+  <Navigation></Navigation>
+
   <div class="p-5 text-center" v-if="product">
     <sui-image class="p-10 rounded-sm" size="large" :src="product.image_url" />
 
@@ -64,16 +66,18 @@ import axios from "axios";
 import {useRoute} from "vue-router";
 
 import {api} from "../../../../config"
+import Navigation from "../../navigation.vue";
 
 export default defineComponent({
   name: "view",
+  components: {Navigation},
   setup() {
     const route = useRoute();
 
     let product = ref(undefined);
 
     async function fetchProduct() {
-      let res = (await axios.get(`${api}/api/nutrition/product?id=` + route.query.id)).data;
+      let res = (await axios.get(`${api}/api/nutrition/product?id=` + route.params.id)).data;
       let _keywords = res.data._keywords;
 
       if(_keywords.includes("soda") || _keywords.includes("food")) {
