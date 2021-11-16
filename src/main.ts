@@ -11,7 +11,7 @@ import App from "./App.vue";
 import {locales} from "./locales";
 
 const i18n = VueI18n.createI18n({
-    locale: "nl",
+    locale: "en",
     fallbackLocale: "en",
     messages: locales
 });
