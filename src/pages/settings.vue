@@ -18,12 +18,16 @@
       </div>
     </FItem>
 
-    <FItem title="Dutch Language" v-slot:content>
-      <div class="ui toggle checkbox">
-        <input type="checkbox" @change.prevent="dutchmode" v-model="isDutch">
-        <label></label>
-      </div>
+    <FItem title="Language" v-slot:content>
+      <router-link class="ui" to="/settings/language"><i class="arrow right icon"></i></router-link>
     </FItem>
+
+<!--    <FItem title="Dutch Language" v-slot:content>-->
+<!--      <div class="ui toggle checkbox">-->
+<!--        <input type="checkbox" @change.prevent="dutchmode" v-model="isDutch">-->
+<!--        <label></label>-->
+<!--      </div>-->
+<!--    </FItem>-->
 
     <div class="p-5 mt-40 text-center">
       <button class="ui button bg-gray-100" @click.prevent="logout">{{ $t("authentication.logout") }}</button>

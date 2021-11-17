@@ -3,6 +3,7 @@ import Home from "./pages/Home.vue";
 import Auth from "./pages/Auth.vue";
 import Dashboard from "./pages/Dashboard.vue";
 import Settings from "./pages/settings.vue";
+import SettingsLanguageSelector from "./pages/settings/languageSelector.vue";
 import Overview from "./pages/dashboard/tabs/overview.vue";
 import Workouts from "./pages/dashboard/tabs/workouts.vue";
 import Exercises from "./pages/dashboard/tabs/exercises.vue";
@@ -60,6 +61,11 @@ const routes = [
         path: "/settings",
         name: "Settings",
         component: Settings
+    },
+    {
+        path: "/settings/language",
+        name: "Language Selector",
+        component: SettingsLanguageSelector
     }
 ];
 
