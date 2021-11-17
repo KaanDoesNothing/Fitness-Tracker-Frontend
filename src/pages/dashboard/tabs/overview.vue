@@ -2,11 +2,11 @@
   <Navigation></Navigation>
   <div class="p-5 flex justify-center">
     <div class="mt-5 border rounded-lg p-2 border-gray-300 filter shadow-md bg-gray-100">
-      <h2 class="text-center">This week's statistics</h2>
+      <h2 class="text-center">{{ $t("tabs.overview.currentWeekStatistics") }}</h2>
       <sui-statistic-group class="flex justify-center">
-        <sui-statistic :value="weekWorkouts.length.toString()" label="Workouts"></sui-statistic>
-        <sui-statistic :value="weekExercises.length.toString()" label="Exercises performed" />
-        <sui-statistic :value="`${weekExercises.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" label="Calories Burned" />
+        <sui-statistic :value="weekWorkouts.length.toString()" :label="$t('tabs.overview.workouts')"></sui-statistic>
+        <sui-statistic :value="weekExercises.length.toString()" :label="$t('tabs.overview.exercisesPerformed')" />
+        <sui-statistic :value="`${weekExercises.reduce((prev, next) => prev + (next.calories | 0), 0).toString()}`" :label="$t('tabs.overview.caloriesBurned')" />
       </sui-statistic-group>
     </div>
   </div>

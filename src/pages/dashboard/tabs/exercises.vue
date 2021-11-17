@@ -7,7 +7,7 @@
       <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">{{  $t("actions.add") }}</button>
     </div>
 
-    <FItem v-slot:content :title="`${exercise.name} (${exercise.type})`" v-for="exercise in exercises">
+    <FItem v-slot:content :title="`${exercise.name} (${$t(`exerciseTypes.${exercise.type}`)})`" v-for="exercise in exercises">
       <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
     </FItem>
   </div>
@@ -71,7 +71,7 @@ export default defineComponent({
 
       if(res.data.exercises) {
         exercises.value = res.data.exercises.map(exercise => {
-          exercise.type = capitalizeFirst(exercise.type);
+          // exercise.type = capitalizeFirst(exercise.type);
           return exercise;
         });
       }

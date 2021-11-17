@@ -26,7 +26,7 @@
     </FItem>
 
     <div class="p-5 mt-40 text-center">
-      <button class="ui button bg-gray-100" @click.prevent="logout">Logout</button>
+      <button class="ui button bg-gray-100" @click.prevent="logout">{{ $t("authentication.logout") }}</button>
     </div>
   </div>
 </template>

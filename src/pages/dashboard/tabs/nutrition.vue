@@ -2,7 +2,7 @@
   <Navigation></Navigation>
 
   <div class="p-5">
-    <router-link class="ui button fluid" to="/dashboard/nutrition/search">Browse</router-link>
+    <router-link class="ui button fluid" to="/dashboard/nutrition/search">{{ $t("actions.browse") }}</router-link>
   </div>
 </template>
 

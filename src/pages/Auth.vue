@@ -6,21 +6,21 @@
     </div>
     <form class="ui form" :class="{'inverted': user.isDarkMode}" @submit.prevent="handleForm">
       <div class="field">
-        <label :class="{'text-white': user.isDarkMode}">Email</label>
+        <label :class="{'text-white': user.isDarkMode}">{{ $t("authentication.email") }}</label>
         <input name="email" type="email" required="required" v-model="form.email"/>
       </div>
       <div class="field">
-        <label>Password</label>
+        <label>{{ $t("authentication.password") }}</label>
         <input name="password" type="password" required="required" v-model="form.password"/>
       </div>
 
 
-      <button class="ui button" type="submit" v-if="type === 'login'">Sign in</button>
-      <button class="ui button" type="submit" v-if="type === 'signup'">Sign up</button>
+      <button class="ui button" type="submit" v-if="type === 'login'">{{  $t("authentication.signin") }}</button>
+      <button class="ui button" type="submit" v-if="type === 'signup'">{{  $t("authentication.signup") }}</button>
     </form>
 
-    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'signup'" @click.prevent="type = 'login'">Already have an account, click here!</button>
-    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'login'" @click.prevent="type = 'signup'">Don't have an account yet?</button>
+    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'signup'" @click.prevent="type = 'login'">{{$t("authentication.existingAccount")}}</button>
+    <button :class="{'text-white': user.isDarkMode}" class="m-5 underline font-sans" v-if="type === 'login'" @click.prevent="type = 'signup'">{{$t("authentication.noExistingAccount")}}</button>
   </div>
 </template>
 

@@ -3,8 +3,8 @@
 
   <div class="p-5">
     <form class="ui action input fluid" @submit.prevent="search">
-      <input type="text" placeholder="Search..." v-model="input">
-      <button class="ui button" :class="{loading}" role="button" type="submit">Search</button>
+      <input type="text" :placeholder="`${$t('actions.browse')}...`" v-model="input">
+      <button class="ui button" :class="{loading}" role="button" type="submit">{{ $t("actions.browse") }}</button>
     </form>
   </div>
 
