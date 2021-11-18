@@ -67,7 +67,7 @@ export default defineComponent({
     const addExerciseModal = ref(false);
 
     async function fetchExercises() {
-      const res = await axios.post(`${api}/api/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.exercises) {
         exercises.value = res.data.exercises.map(exercise => {
@@ -78,7 +78,7 @@ export default defineComponent({
     }
 
     async function handleForm() {
-      const res = await axios.post(`${api}/api/user/exercises/create`, form.value, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/exercises/create`, form.value, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
         await fetchExercises();

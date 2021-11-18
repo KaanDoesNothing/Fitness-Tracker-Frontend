@@ -41,7 +41,7 @@ export default {
     const weekExercises = ref([]);
 
     async function fetchWorkouts() {
-      const res = await axios.post(`${api}/api/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.workouts) {
         workouts.value = res.data.workouts;
@@ -52,7 +52,7 @@ export default {
     }
 
     async function fetchExercises() {
-      const res = await axios.post(`${api}/api/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       exerciseCount.value = res.data.exercises.length;
     }

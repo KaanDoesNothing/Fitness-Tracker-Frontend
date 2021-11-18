@@ -77,7 +77,7 @@ export default defineComponent({
     let product = ref(undefined);
 
     async function fetchProduct() {
-      let res = (await axios.get(`${api}/api/nutrition/product?id=` + route.params.id)).data;
+      let res = (await axios.get(`${api}/nutrition/product?id=` + route.params.id)).data;
       let _keywords = res.data._keywords;
 
       if(_keywords.includes("soda") || _keywords.includes("food")) {

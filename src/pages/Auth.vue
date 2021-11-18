@@ -45,7 +45,7 @@ export default defineComponent({
       this.error = undefined;
 
       if(this.type === "login") {
-        let res = await axios.post(`${api}/api/auth/signin`, this.form);
+        let res = await axios.post(`${api}/auth/signin`, this.form);
 
         console.log(res.data);
 
@@ -62,7 +62,7 @@ export default defineComponent({
           await router.push("/dashboard/overview");
         }
       }else if(this.type === "signup") {
-        let res = await axios.post(`${api}/api/auth/signup`, this.form);
+        let res = await axios.post(`${api}/auth/signup`, this.form);
 
         if (res.data.error) this.error = res.data.error;
 

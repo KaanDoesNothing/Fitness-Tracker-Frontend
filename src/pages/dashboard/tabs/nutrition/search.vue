@@ -36,7 +36,7 @@ export default defineComponent({
     async function search() {
       loading.value = true;
 
-      let res = (await axios.get(`${api}/api/nutrition/search?q=` + input.value)).data;
+      let res = (await axios.get(`${api}/nutrition/search?q=` + input.value)).data;
 
       results.value = res.data.products;
 

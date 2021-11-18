@@ -108,8 +108,8 @@ export default defineComponent({
     const addWorkoutModal = ref(false);
 
     async function fetchWorkouts() {
-      const res = await axios.post(`${api}/api/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
-      // const resSorted = await axios.post(`${api}/api/user/workouts/sorted`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      // const resSorted = await axios.post(`${api}/user/workouts/sorted`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.workouts) {
         workouts.value = res.data.workouts;
@@ -123,7 +123,7 @@ export default defineComponent({
     }
 
     async function fetchExercises() {
-      const res = await axios.post(`${api}/api/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.exercises) {
         exercises.value = res.data.exercises.map(exercise => {
@@ -133,7 +133,7 @@ export default defineComponent({
     }
 
     async function handleForm() {
-      const res = await axios.post(`${api}/api/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
+      const res = await axios.post(`${api}/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
         await fetchWorkouts();
