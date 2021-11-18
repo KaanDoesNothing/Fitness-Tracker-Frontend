@@ -1,0 +1,8 @@
+{
+  "0.0.2": {
+    "Test": "This one is just for testing"
+  },
+  "0.0.1": {
+    "Changelogs": "A Changelogs tab has been added which can be accessed from the settings menu."
+  }
+}

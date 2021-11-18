@@ -2,10 +2,12 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "./pages/Home.vue";
 import Auth from "./pages/Auth.vue";
 import Dashboard from "./pages/Dashboard.vue";
-import Settings from "./pages/settings.vue";
+import Settings from "./pages/Settings.vue";
 import SettingsLanguageSelector from "./pages/settings/languageSelector.vue";
+import SettingsChangelogs from "./pages/settings/changelogs.vue";
 import Overview from "./pages/dashboard/tabs/overview.vue";
 import Workouts from "./pages/dashboard/tabs/workouts.vue";
+import ViewWorkout from "./pages/dashboard/tabs/workouts/view.vue";
 import Exercises from "./pages/dashboard/tabs/exercises.vue";
 import Nutrition from "./pages/dashboard/tabs/nutrition.vue";
 import NutritionSearch from "./pages/dashboard/tabs/nutrition/search.vue";
@@ -31,6 +33,11 @@ const routes = [
         path: "/dashboard/workouts",
         name: "Workouts",
         component: Workouts
+    },
+    {
+        path: "/dashboard/workouts/:id",
+        name: "View Workout",
+        component: ViewWorkout
     },
     {
         path: "/dashboard/exercises",
@@ -66,6 +73,11 @@ const routes = [
         path: "/settings/language",
         name: "Language Selector",
         component: SettingsLanguageSelector
+    },
+    {
+        path: "/settings/changelogs",
+        name: "Changelogs",
+        component: SettingsChangelogs
     }
 ];
 

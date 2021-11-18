@@ -22,6 +22,10 @@
       <router-link class="ui" to="/settings/language"><i class="arrow right icon"></i></router-link>
     </FItem>
 
+    <FItem title="Changelogs" v-slot:content>
+      <router-link class="ui" to="/settings/changelogs"><i class="arrow right icon"></i></router-link>
+    </FItem>
+
 <!--    <FItem title="Dutch Language" v-slot:content>-->
 <!--      <div class="ui toggle checkbox">-->
 <!--        <input type="checkbox" @change.prevent="dutchmode" v-model="isDutch">-->
@@ -59,21 +63,21 @@ export default defineComponent({
 
     function compactmode() {
       let settings = user.settings;
-      settings.compactMode = user.settings.compactMode;
+      Settings.compactMode = user.settings.compactMode;
 
-      user.setSettings(settings);
+      user.setSettings(Settings);
     }
 
     async function dutchmode() {
       let settings = user.settings;
 
-      if(settings.locale === "en") {
-        settings.locale = "nl";
+      if(Settings.locale === "en") {
+        Settings.locale = "nl";
       }else {
-        settings.locale = "en";
+        Settings.locale = "en";
       }
 
-      await user.setSettings(settings);
+      await user.setSettings(Settings);
 
       window.location.reload();
     }
