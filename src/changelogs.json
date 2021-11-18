@@ -1,4 +1,7 @@
 {
+  "0.0.3": {
+    "Update Check": "Added an update available alert"
+  },
   "0.0.2": {
     "Test": "This one is just for testing"
   },

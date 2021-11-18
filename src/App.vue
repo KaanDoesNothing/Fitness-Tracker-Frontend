@@ -1,6 +1,7 @@
 <script lang="ts">
 import {defineComponent, ref} from "vue";
 import {Storage} from "@capacitor/storage";
+import { Dialog } from "@capacitor/dialog";
 import {useUserStore} from "./stores/user";
 
 import axios from "axios";
@@ -9,6 +10,8 @@ import Navbar from "./components/Navbar.vue";
 import router from "./router";
 import {useRouter} from "vue-router";
 import {setDarkMode} from "./utils";
+
+import changelogs from "./changelogs.json";
 
 export default defineComponent({
   components: {Navbar},
@@ -72,6 +75,22 @@ export default defineComponent({
 
       if(settings.value) {
         user.$patch({settings: JSON.parse(settings.value)});
+      }
+
+      //Check for updates
+
+      let currentVersion = Object.keys(changelogs).length;
+
+      let latestChangelogs = (await axios.get("https://raw.githubusercontent.com/KaanDoesNothing/Fitness-Tracker-Frontend/master/src/changelogs.json")).data;
+      let latestVersion = Object.keys(latestChangelogs).length;
+
+      console.log(currentVersion, latestVersion);
+
+      if(latestVersion > currentVersion) {
+        await Dialog.alert({
+          title: "Update available",
+          message:`You can update at kaanlikescoding.me/static/fitness/versions/${Object.keys(latestChangelogs)[0]}.apk`
+        });
       }
     }
 
