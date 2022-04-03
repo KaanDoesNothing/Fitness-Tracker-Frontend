@@ -4,7 +4,7 @@
   </Navigation>
   <div class="p-5">
     <div class="flex justify-center">
-      <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">{{  $t("actions.add") }}</button>
+      <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">{{  $t("actions.add_exercise") }}</button>
     </div>
 
     <FItem v-slot:content :title="`${exercise.name} (${$t(`exerciseTypes.${exercise.type}`)})`" v-for="exercise in exercises">

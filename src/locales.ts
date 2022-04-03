@@ -2,7 +2,7 @@ export let locales = {
     en: {
         navigation: {
             overview: "Overview",
-            workouts: "Workouts",
+            workouts: "Workouts Logs",
             exercises: "Exercises",
             nutrition: "Nutrition",
             nutrition_search: "Search Nutrition",
@@ -16,7 +16,9 @@ export let locales = {
             edit: "Edit",
             browse: "Browse",
             select: "Select",
-            selected: "Selected"
+            selected: "Selected",
+            add_workout: "Log an exercise",
+            add_exercise: "Create an exercise"
         },
         authentication: {
             signin: "Sign in",
