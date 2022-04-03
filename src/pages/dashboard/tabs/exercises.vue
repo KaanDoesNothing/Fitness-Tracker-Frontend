@@ -7,9 +7,25 @@
       <button class="ui positive button fluid" @click.prevent="addExerciseModal = true; error = false">{{  $t("actions.add_exercise") }}</button>
     </div>
 
-    <FItem v-slot:content :title="`${exercise.name} (${$t(`exerciseTypes.${exercise.type}`)})`" v-for="exercise in exercises">
-      <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
-    </FItem>
+    <div class="text-center mt-5">
+      <label class="text-white font-sans text-xl">Weights</label>
+
+      <FItem v-slot:content :title="`${exercise.name}`" v-for="exercise in weightExercises">
+        <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
+      </FItem>
+    </div>
+
+    <div class="text-center mt-5">
+      <label class="text-white font-sans text-xl">Cardio</label>
+
+      <FItem v-slot:content :title="`${exercise.name}`" v-for="exercise in cardioExercises">
+        <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
+      </FItem>
+    </div>
+
+<!--    <FItem v-slot:content :title="`${exercise.name} (${$t(`exerciseTypes.${exercise.type}`)})`" v-for="exercise in exercises">-->
+<!--      <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>-->
+<!--    </FItem>-->
   </div>
 
   <sui-modal v-model="addExerciseModal">
@@ -90,7 +106,15 @@ export default defineComponent({
 
     fetchExercises();
 
-    return {exercises, addExerciseModal, form, handleForm, error};
+    return {
+      rawExercises: exercises,
+      weightExercises: computed(() => exercises.value.filter(exercise => exercise.type === "weights").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
+      cardioExercises: computed(() => exercises.value.filter(exercise => exercise.type === "cardio").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
+      addExerciseModal,
+      form,
+      handleForm,
+      error
+    };
   }
 });
 </script>
