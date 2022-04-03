@@ -1,6 +1,6 @@
 <template>
   <div class="m-5">
-    <div class="flex justify-center border rounded-lg bg-gray-100">
+    <div class="flex p-1 justify-center border rounded-lg bg-gray-100">
       <router-link :class="classes" to="/dashboard/overview">{{ $t("navigation.overview") }}</router-link>
       <router-link :class="classes" to="/dashboard/workouts">{{ $t("navigation.workouts") }}</router-link>
       <router-link :class="classes" to="/dashboard/exercises">{{ $t("navigation.exercises") }}</router-link>
