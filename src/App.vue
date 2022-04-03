@@ -119,4 +119,56 @@ export default defineComponent({
       <sui-loader></sui-loader>
     </sui-dimmer>
   </template>
+
+<!--  <div class="floating-container" v-if="$route.path.startsWith('/dashboard')">-->
+<!--    <router-link to="/dashboard/chat" class="floating-button"><i class="chat icon"></i></router-link>-->
+<!--  </div>-->
 </template>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: #eaedf2;
+  font-family: 'Roboto', sans-serif;
+}
+
+.floating-container {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  bottom: 0;
+  right: 0;
+  margin: 25px 15px;
+}
+
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #2cb3f0;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  /*box-shadow: 0 px 5px -5px rgba(44, 179, 240, 0.6);*/
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+
+
+
+
+
+</style>
