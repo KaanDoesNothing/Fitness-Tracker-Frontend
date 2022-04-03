@@ -4,12 +4,18 @@ export let locales = {
             overview: "Overview",
             workouts: "Workouts",
             exercises: "Exercises",
-            nutrition: "Nutrition"
+            nutrition: "Nutrition",
+            nutrition_search: "Search Nutrition",
+            settings: "Settings",
+            changelogs: "Changelogs",
+            language_selector: "Language Selector"
         },
         actions: {
             add: "Add",
             edit: "Edit",
-            browse: "Browse"
+            browse: "Browse",
+            select: "Select",
+            selected: "Selected"
         },
         authentication: {
             signin: "Sign in",
@@ -38,12 +44,18 @@ export let locales = {
             overview: "Overzicht",
             workouts: "Sessies",
             exercises: "Oefeningen",
-            nutrition: "Nutritie"
+            nutrition: "Nutritie",
+            nutrition_search: "Nutritie zoeken.",
+            settings: "Instellingen",
+            changelogs: "Update Geschiedenis",
+            language_selector: "Taal Selecteren"
         },
         actions: {
             add: "Toevoegen",
             edit: "Bewerken",
-            browse: "Zoeken"
+            browse: "Zoeken",
+            select: "Selecteren",
+            selected: "Geselecteert"
         },
         authentication: {
             signin: "Inloggen",

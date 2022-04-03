@@ -1,6 +1,6 @@
 <template>
   <div class="text-center p-20" v-if="user.isMobile">
-    <h2 class="font-md font-sans" :class="{'text-white': user.isDarkMode}">{{currentTab}} <router-link v-if="currentTab !== 'Authentication'" to="/settings"><i :class="{'text-white': user.isDarkMode, 'text-black': !user.isDarkMode}" class="cog icon"></i></router-link></h2>
+    <h2 class="font-md font-sans" :class="{'text-white': user.isDarkMode}">{{ $t(`navigation.${currentTab.toLowerCase().replace(" ", "_")}`) || currentTab}} <router-link v-if="currentTab !== 'Authentication'" to="/settings"><i :class="{'text-white': user.isDarkMode, 'text-black': !user.isDarkMode}" class="cog icon"></i></router-link></h2>
   </div>
 
   <div class="ui menu" :class="{'inverted': user.darkMode}" style="border-radius: 0px;" v-if="!user.isMobile">
