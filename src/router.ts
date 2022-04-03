@@ -9,6 +9,7 @@ import Overview from "./pages/dashboard/tabs/overview.vue";
 import Workouts from "./pages/dashboard/tabs/workouts.vue";
 import ViewWorkout from "./pages/dashboard/tabs/workouts/view.vue";
 import Exercises from "./pages/dashboard/tabs/exercises.vue";
+import EditExercise from "./pages/dashboard/tabs/exercises/edit.vue";
 import Nutrition from "./pages/dashboard/tabs/nutrition.vue";
 import NutritionSearch from "./pages/dashboard/tabs/nutrition/search.vue";
 import NutritionView from "./pages/dashboard/tabs/nutrition/view.vue";
@@ -43,6 +44,11 @@ const routes = [
         path: "/dashboard/exercises",
         name: "Exercises",
         component: Exercises
+    },
+    {
+        path: "/dashboard/exercises/:id",
+        name: "Edit Exercise",
+        component: EditExercise
     },
     {
         path: "/dashboard/nutrition",

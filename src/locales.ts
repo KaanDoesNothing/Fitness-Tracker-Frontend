@@ -3,7 +3,9 @@ export let locales = {
         navigation: {
             overview: "Overview",
             workouts: "Workouts Logs",
+            view_workout: "View Workout",
             exercises: "Exercises",
+            edit_exercise: "Edit Exercise",
             nutrition: "Nutrition",
             nutrition_search: "Search Nutrition",
             settings: "Settings",
@@ -47,6 +49,7 @@ export let locales = {
             overview: "Overzicht",
             workouts: "Sessies",
             exercises: "Oefeningen",
+            edit_exercise: "Bewerk Oefening",
             nutrition: "Nutritie",
             nutrition_search: "Nutritie zoeken.",
             settings: "Instellingen",

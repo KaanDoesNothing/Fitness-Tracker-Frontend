@@ -1,7 +1,5 @@
 <template>
-  <div class="p-5">
-    <a class="ui button fluid" @click="$router.go(-1)"><i class="arrow left icon"></i></a>
-  </div>
+  <FBackButton></FBackButton>
 
   <div class="p-5">
     <FItem title="Dark Mode" v-slot:content>
@@ -46,10 +44,12 @@ import {Storage} from "@capacitor/storage";
 import {useRouter} from "vue-router";
 
 import FItem from "../components/ui/FItem.vue";
+import FBackButton from "../components/ui/FBackButton.vue";
 
 export default defineComponent({
   name: "settings",
   components: {
+    FBackButton,
     FItem
   },
   setup() {
