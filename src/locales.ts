@@ -8,7 +8,8 @@ export let locales = {
             nutrition_search: "Search Nutrition",
             settings: "Settings",
             changelogs: "Changelogs",
-            language_selector: "Language Selector"
+            language_selector: "Language Selector",
+            home: "Main menu"
         },
         actions: {
             add: "Add",
@@ -48,7 +49,8 @@ export let locales = {
             nutrition_search: "Nutritie zoeken.",
             settings: "Instellingen",
             changelogs: "Update Geschiedenis",
-            language_selector: "Taal Selecteren"
+            language_selector: "Taal Selecteren",
+            home: "Hoofd menu"
         },
         actions: {
             add: "Toevoegen",

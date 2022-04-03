@@ -7,9 +7,9 @@
 <!--      <button class="p-3 bg-white w-screen rounded-lg text-white" style="background-color: #21BA45;">Add</button>-->
     </div>
 
-    <sui-dimmer :active="sortedWorkouts === undefined">
-      <sui-loader></sui-loader>
-    </sui-dimmer>
+<!--    <sui-dimmer :active="sortedWorkouts === undefined">-->
+<!--      <sui-loader></sui-loader>-->
+<!--    </sui-dimmer>-->
 
     <div v-for="day in sortedWorkouts" :key="day.date" class="text-center mt-5 border rounded-lg p-2 border-gray-300 filter shadow-md bg-gray-100">
       <h2 class="header">{{day.date}}</h2>
