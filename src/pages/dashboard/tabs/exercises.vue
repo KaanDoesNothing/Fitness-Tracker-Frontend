@@ -8,7 +8,7 @@
     </div>
 
     <div class="text-center mt-5">
-      <label class="text-white font-sans text-xl">Weights</label>
+      <label class="text-white font-sans text-xl">{{$t(`exerciseTypes.weights`)}}</label>
 
       <FItem v-slot:content :title="`${exercise.name}`" v-for="exercise in weightExercises">
         <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="text-center mt-5">
-      <label class="text-white font-sans text-xl">Cardio</label>
+      <label class="text-white font-sans text-xl">{{$t(`exerciseTypes.cardio`)}}</label>
 
       <FItem v-slot:content :title="`${exercise.name}`" v-for="exercise in cardioExercises">
         <router-link :to="`/dashboard/exercises/${exercise.name}`" class="text-gray-500">{{  $t("actions.edit") }}</router-link>

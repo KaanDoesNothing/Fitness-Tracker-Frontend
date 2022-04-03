@@ -59,7 +59,9 @@ export let locales = {
             edit: "Bewerken",
             browse: "Zoeken",
             select: "Selecteren",
-            selected: "Geselecteert"
+            selected: "Geselecteert",
+            add_workout: "Log een oefening",
+            add_exercise: "Maak een oefening"
         },
         authentication: {
             signin: "Inloggen",
