@@ -77,34 +77,26 @@ export default defineComponent({
   setup() {
     const user = useUserStore();
 
-    const exercises = ref([]);
+    // const exercises = ref([]);
     const form = ref({name: "", type: ""});
     const error = ref(false);
     const addExerciseModal = ref(false);
-
-    async function updateExercises() {
-      const res = await fetchExercises({token: user.token});
-
-      exercises.value = res;
-    }
 
     async function handleForm() {
       const res = await axios.post(`${api}/user/exercises/create`, form.value, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
-        await updateExercises();
+        await user.updateCache();
         addExerciseModal.value = false;
       }else if(res.data.error) {
         error.value = res.data.error;
       }
     }
 
-    updateExercises();
-
     return {
-      rawExercises: exercises,
-      weightExercises: computed(() => exercises.value.filter(exercise => exercise.type === "weights").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
-      cardioExercises: computed(() => exercises.value.filter(exercise => exercise.type === "cardio").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
+      rawExercises: computed(() =>  user.cache.exercises),
+      weightExercises: computed(() => user.cache.exercises.filter(exercise => exercise.type === "weights").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
+      cardioExercises: computed(() => user.cache.exercises.filter(exercise => exercise.type === "cardio").map(exercise => { exercise.name = capitalizeFirst(exercise.name); return exercise; })),
       addExerciseModal,
       form,
       handleForm,
