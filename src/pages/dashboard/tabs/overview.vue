@@ -35,30 +35,16 @@ export default {
   setup() {
     const user = useUserStore();
 
+    // (async () => {user.updateCache()})();
+
     const exerciseCount = ref(0);
     const workouts = ref([]);
     const weekWorkouts = ref([]);
     const weekExercises = ref([]);
 
-    async function fetchWorkouts() {
-      const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
-
-      if(res.data.workouts) {
-        workouts.value = res.data.workouts;
-
-        weekWorkouts.value = sortWorkoutsThisWeekForOverview(res.data.workouts);
-        weekExercises.value = sortExercisesThisWeekForOverview(res.data.workouts);
-      }
-    }
-
-    async function fetchExercises() {
-      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
-
-      exerciseCount.value = res.data.exercises.length;
-    }
-
-    fetchWorkouts();
-    fetchExercises();
+    weekWorkouts.value = sortWorkoutsThisWeekForOverview(user.cache.workouts);
+    weekExercises.value = sortExercisesThisWeekForOverview(user.cache.workouts);
+    exerciseCount.value = user.cache.exercises.length;
 
     return {exerciseCount, workouts, weekWorkouts, weekExercises}
   }

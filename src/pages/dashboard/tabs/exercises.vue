@@ -77,7 +77,6 @@ export default defineComponent({
   setup() {
     const user = useUserStore();
 
-    // const exercises = ref([]);
     const form = ref({name: "", type: ""});
     const error = ref(false);
     const addExerciseModal = ref(false);
