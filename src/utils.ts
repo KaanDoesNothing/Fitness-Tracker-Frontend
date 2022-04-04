@@ -5,12 +5,20 @@ export let setDarkMode = (darkmode: boolean) => {
         //@ts-ignore
         document.querySelector("body").classList.remove("bg-white");
         //@ts-ignore
+        document.querySelector("html").classList.remove("bg-white");
+        //@ts-ignore
         document.querySelector("body").classList.add("bg-black");
+        //@ts-ignore
+        document.querySelector("html").classList.add("bg-black");
     }else {
         //@ts-ignore
         document.querySelector("body").classList.remove("bg-black");
         //@ts-ignore
+        document.querySelector("html").classList.remove("bg-black");
+        //@ts-ignore
         document.querySelector("body").classList.add("bg-white");
+        //@ts-ignore
+        document.querySelector("html").classList.add("bg-white");
     }
 }
 
