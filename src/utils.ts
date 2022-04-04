@@ -1,4 +1,6 @@
 import momentjs from "moment";
+import axios from "axios";
+import {api} from "./config";
 
 export let setDarkMode = (darkmode: boolean) => {
     if(darkmode === true) {
@@ -93,4 +95,13 @@ export let sortWorkoutsThisWeekForOverview = (workouts: any) => {
     });
 
     return days;
+}
+
+export let fetchExercises = async (data: {token: string}) => {
+    const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${data.token}`}});
+    return res.data.exercises;
+}
+export let fetchWorkouts = async (data: {token: string}) => {
+    const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${data.token}`}});
+    return res.data.workouts;
 }

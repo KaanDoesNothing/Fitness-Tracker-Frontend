@@ -65,7 +65,7 @@ import {computed, defineComponent, ref} from "vue";
 import axios from "axios";
 import {useUserStore} from "../../../stores/user";
 
-import {capitalizeFirst} from "../../../utils";
+import {capitalizeFirst, fetchExercises} from "../../../utils";
 import {api} from "../../../config";
 import FItem from "../../../components/ui/FItem.vue";
 
@@ -82,29 +82,24 @@ export default defineComponent({
     const error = ref(false);
     const addExerciseModal = ref(false);
 
-    async function fetchExercises() {
-      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
+    async function updateExercises() {
+      const res = await fetchExercises({token: user.token});
 
-      if(res.data.exercises) {
-        exercises.value = res.data.exercises.map(exercise => {
-          // exercise.type = capitalizeFirst(exercise.type);
-          return exercise;
-        });
-      }
+      exercises.value = res;
     }
 
     async function handleForm() {
       const res = await axios.post(`${api}/user/exercises/create`, form.value, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
-        await fetchExercises();
+        await updateExercises();
         addExerciseModal.value = false;
       }else if(res.data.error) {
         error.value = res.data.error;
       }
     }
 
-    fetchExercises();
+    updateExercises();
 
     return {
       rawExercises: exercises,

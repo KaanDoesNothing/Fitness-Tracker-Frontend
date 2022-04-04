@@ -95,7 +95,7 @@ import {computed, defineComponent, ref} from "vue";
 import axios from "axios";
 import {useUserStore} from "../../../stores/user";
 
-import {capitalizeFirst, sortWorkouts} from "../../../utils";
+import {capitalizeFirst, fetchExercises, fetchWorkouts, sortWorkouts} from "../../../utils";
 import {api} from "../../../config";
 import Navigation from "../navigation.vue";
 import FItem from "../../../components/ui/FItem.vue";
@@ -113,45 +113,35 @@ export default defineComponent({
     const error = ref(false);
     const addWorkoutModal = ref(false);
 
-    async function fetchWorkouts() {
-      const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${user.token}`}});
-      // const resSorted = await axios.post(`${api}/user/workouts/sorted`, null, {headers: {authorization: `Bearer ${user.token}`}});
+    async function getWorkouts() {
+      const res = await fetchWorkouts({token: user.token});
 
-      if(res.data.workouts) {
-        workouts.value = res.data.workouts;
+      if(res) {
+        workouts.value = res;
+        sortedWorkouts.value = sortWorkouts(res);
       }
-
-      sortedWorkouts.value = sortWorkouts(res.data.workouts);
-
-      // if(resSorted.data.workouts) {
-      //   // sortedWorkouts.value = resSorted.data.workouts;
-      // }
     }
 
-    async function fetchExercises() {
-      const res = await axios.post(`${api}/user/exercises`, null, {headers: {authorization: `Bearer ${user.token}`}});
+    async function getExercises() {
+      const res = await fetchExercises({token: user.token});
 
-      if(res.data.exercises) {
-        exercises.value = res.data.exercises.map(exercise => {
-          return exercise;
-        });
-      }
+      exercises.value = res;
     }
 
     async function handleForm() {
       const res = await axios.post(`${api}/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
-        await fetchWorkouts();
+        await getWorkouts();
         addWorkoutModal.value = false;
       }else if(res.data.error) {
         error.value = res.data.error;
       }
     }
 
-    fetchWorkouts();
+    getWorkouts();
 
-    fetchExercises();
+    getExercises();
 
     return {user: computed(() => user), exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
   }
