@@ -106,44 +106,71 @@ export default defineComponent({
   setup() {
     const user = useUserStore();
 
-    const sortedWorkouts = ref(undefined);
-    const workouts = ref([]);
-    const exercises = ref([]);
-    const form = ref({exercise: "", weight: "", reps: "", sets: "", duration: "", calories: ""});
-    const error = ref(false);
     const addWorkoutModal = ref(false);
 
-    async function getWorkouts() {
-      const res = await fetchWorkouts({token: user.token});
+    const form = ref({exercise: "", weight: "", reps: "", sets: "", duration: "", calories: ""});
 
-      if(res) {
-        workouts.value = res;
-        sortedWorkouts.value = sortWorkouts(res);
-      }
-    }
-
-    async function getExercises() {
-      const res = await fetchExercises({token: user.token});
-
-      exercises.value = res;
-    }
+    const error = ref(false);
 
     async function handleForm() {
       const res = await axios.post(`${api}/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
 
       if(res.data.success) {
-        await getWorkouts();
+        await user.updateCache();
         addWorkoutModal.value = false;
       }else if(res.data.error) {
         error.value = res.data.error;
       }
     }
+    //
+    // const sortedWorkouts = ref(undefined);
+    // const workouts = ref([]);
+    // const exercises = ref([]);
+    // const form = ref({exercise: "", weight: "", reps: "", sets: "", duration: "", calories: ""});
+    // const error = ref(false);
+    // const addWorkoutModal = ref(false);
+    //
+    // async function getWorkouts() {
+    //   const res = await fetchWorkouts({token: user.token});
+    //
+    //   if(res) {
+    //     workouts.value = res;
+    //     sortedWorkouts.value = sortWorkouts(res);
+    //   }
+    // }
+    //
+    // async function getExercises() {
+    //   const res = await fetchExercises({token: user.token});
+    //
+    //   exercises.value = res;
+    // }
+    //
+    // async function handleForm() {
+    //   const res = await axios.post(`${api}/user/workouts/create`, {...form.value, date: Date.now()}, {headers: {authorization: `Bearer ${user.token}`}});
+    //
+    //   if(res.data.success) {
+    //     await getWorkouts();
+    //     addWorkoutModal.value = false;
+    //   }else if(res.data.error) {
+    //     error.value = res.data.error;
+    //   }
+    // }
+    //
+    // getWorkouts();
+    //
+    // getExercises();
+    //
+    // return {user: computed(() => user), exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
 
-    getWorkouts();
-
-    getExercises();
-
-    return {user: computed(() => user), exercises, addWorkoutModal, form, handleForm, error, sortedWorkouts};
+    return {
+      user: computed(() => user),
+      exercises: computed(() => user.cache.exercises),
+      sortedWorkouts: computed(() => sortWorkouts(user.cache.workouts)),
+      addWorkoutModal,
+      form,
+      error,
+      handleForm
+    }
   }
 });
 </script>

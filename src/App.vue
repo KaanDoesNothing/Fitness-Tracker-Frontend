@@ -29,10 +29,14 @@ export default defineComponent({
       if(token) {
         user.$patch({token});
 
-        if(isMobile) {
-          await router.push("/dashboard/overview");
-        }
-      }else if(isMobile) {
+        await user.updateCache();
+
+        await router.push("/dashboard/overview");
+
+        // if(isMobile) {
+        //   await router.push("/dashboard/overview");
+        // }
+      }else {
         await router.push("/auth");
       }
     }

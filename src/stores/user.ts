@@ -1,10 +1,10 @@
 import {defineStore} from "pinia";
-import {setDarkMode} from "../utils";
+import {fetchExercises, fetchWorkouts, setDarkMode} from "../utils";
 import {Storage} from "@capacitor/storage";
 
 export const useUserStore = defineStore("user", {
-    state: (): any => {
-        return {token: undefined, isMobile: true, isDarkMode: false, settings: {compactMode: true}}
+    state: (): userStore => {
+        return {token: null, isMobile: true, isDarkMode: false, settings: {compactMode: true}, cache: {exercises: [], workouts: []}}
     },
     actions: {
         async setDarkMode(value: boolean) {
@@ -17,6 +17,12 @@ export const useUserStore = defineStore("user", {
             this.settings = newData;
 
             await Storage.set({key: "settings", value: JSON.stringify(newData)});
+        },
+        async updateCache() {
+            if(!this.token) return;
+
+            this.cache.exercises = await fetchExercises({token: this.token});
+            this.cache.workouts = await fetchWorkouts({token: this.token});
         }
     }
     // actions: {
@@ -27,3 +33,16 @@ export const useUserStore = defineStore("user", {
     //     }
     // }
 });
+
+export interface userStore {
+    token: string | null,
+    isMobile: boolean,
+    isDarkMode: boolean,
+    settings: {
+        compactMode: boolean
+    },
+    cache: {
+        exercises: [],
+        workouts: []
+    }
+}
