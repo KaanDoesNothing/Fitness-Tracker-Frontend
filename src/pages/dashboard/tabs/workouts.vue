@@ -16,6 +16,11 @@
       <sui-list relaxed>
         <sui-list-item v-for="workout in day.workouts">
           <sui-list-content v-if="user.settings.compactMode">
+<!--            <FItem :title="workout.name" v-slot:content>-->
+<!--              <label class="text-gray-500">{{workout.timestamp + ' '}}</label>&ndash;&gt;-->
+<!--              <label class="text-gray-500" v-if="workout.type === 'weights'">({{workout.weight}}kg {{workout.reps}}x{{workout.sets}})</label>-->
+<!--              <label class="text-gray-500" v-if="workout.type === 'cardio'">({{workout.calories}}cal {{workout.duration}}min)</label>-->
+<!--            </FItem>-->
             <router-link class="font-sans text-black" :to="`/dashboard/workouts/${workout.id}`">{{ workout.name }}
               -
 
@@ -93,10 +98,11 @@ import {useUserStore} from "../../../stores/user";
 import {capitalizeFirst, sortWorkouts} from "../../../utils";
 import {api} from "../../../config";
 import Navigation from "../navigation.vue";
+import FItem from "../../../components/ui/FItem.vue";
 
 export default defineComponent({
   name: "Workouts",
-  components: {Navigation},
+  components: {FItem, Navigation},
   setup() {
     const user = useUserStore();
 

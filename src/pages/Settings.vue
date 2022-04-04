@@ -63,9 +63,9 @@ export default defineComponent({
 
     function compactmode() {
       let settings = user.settings;
-      Settings.compactMode = user.settings.compactMode;
+      settings.compactMode = user.settings.compactMode;
 
-      user.setSettings(Settings);
+      user.setSettings(settings);
     }
 
     async function dutchmode() {

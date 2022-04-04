@@ -113,7 +113,8 @@ export default defineComponent({
       addExerciseModal,
       form,
       handleForm,
-      error
+      error,
+      darkMode: computed(() => user.value.darkMode)
     };
   }
 });
