@@ -5,7 +5,7 @@
     <sui-image class="p-10 rounded-sm" size="large" :src="product.image_url" />
 
     <h3 class="text-white">{{product.product_name}}</h3>
-    <h4 class="text-gray-500">{{product.brands}}</h4>
+    <h4 class="text-white">{{product.brands}}</h4>
 <!--    <h5 class="text-gray-500">{{product.product_quantity}}{{product.type}}</h5>-->
 
     <br>
