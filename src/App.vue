@@ -124,9 +124,9 @@ export default defineComponent({
     </sui-dimmer>
   </template>
 
-<!--  <div class="floating-container" v-if="$route.path.startsWith('/dashboard')">-->
-<!--    <router-link to="/dashboard/chat" class="floating-button"><i class="chat icon"></i></router-link>-->
-<!--  </div>-->
+  <div class="floating-container" v-if="$route.path.startsWith('/dashboard')">
+    <router-link to="/dashboard/chat" class="floating-button"><i class="chat icon"></i></router-link>
+  </div>
 </template>
 
 <style>

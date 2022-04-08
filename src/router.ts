@@ -13,6 +13,7 @@ import EditExercise from "./pages/dashboard/tabs/exercises/edit.vue";
 import Nutrition from "./pages/dashboard/tabs/nutrition.vue";
 import NutritionSearch from "./pages/dashboard/tabs/nutrition/search.vue";
 import NutritionView from "./pages/dashboard/tabs/nutrition/view.vue";
+import Chat from "./pages/Chat.vue";
 
 const routes = [
     {
@@ -84,6 +85,11 @@ const routes = [
         path: "/settings/changelogs",
         name: "Changelogs",
         component: SettingsChangelogs
+    },
+    {
+        path: "/dashboard/chat",
+        name: "Chat",
+        component: Chat
     }
 ];
 

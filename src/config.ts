@@ -10,5 +10,7 @@ try {
     console.log(err);
 }
 
-export {api};
+let socketApi = window.location.origin === "http://localhost:3000" ? `ws://localhost:5555` : `wss://api.fitness.kaanlikescoding.me`;
+
+export {api, socketApi};
 // export let api = "http://localhost:5555/api";

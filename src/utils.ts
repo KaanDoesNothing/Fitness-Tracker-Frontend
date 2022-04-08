@@ -105,3 +105,8 @@ export let fetchWorkouts = async (data: {token: string}) => {
     const res = await axios.post(`${api}/user/workouts`, null, {headers: {authorization: `Bearer ${data.token}`}});
     return res.data.workouts;
 }
+
+export let fetchMessages = async (data: {token: string}) => {
+    const res = await axios.post(`${api}/chat/messages`, null, {headers: {authorization: `Bearer ${data.token}`}});
+    return res.data.messages;
+}

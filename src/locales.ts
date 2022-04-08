@@ -11,7 +11,8 @@ export let locales = {
             settings: "Settings",
             changelogs: "Changelogs",
             language_selector: "Language Selector",
-            home: "Main menu"
+            home: "Main menu",
+            chat: "Community Chat"
         },
         actions: {
             add: "Add",
@@ -37,12 +38,17 @@ export let locales = {
                 workouts: "Workouts",
                 exercisesPerformed: "Exercises Performed",
                 caloriesBurned: "Calories burned"
+            },
+            nutrition: {
+                search: "Search for a product",
+                browse_recipes: "Browse Recipes",
+                view_calories: "Calorie Counter"
             }
         },
         exerciseTypes: {
             weights: "Weights",
             cardio: "Cardio"
-        }
+        },
     },
     nl: {
         navigation: {
