@@ -5,7 +5,7 @@
       <label>{{error}}</label>
     </div>
     <form class="ui form" :class="{'inverted': user.isDarkMode}" @submit.prevent="handleForm">
-      <div class="field" v-if="type !== 'Login'">
+      <div class="field" v-if="type !== 'login'">
         <label>{{ $t("authentication.username") }}</label>
         <input name="username" required="required" v-model="form.username"/>
       </div>
