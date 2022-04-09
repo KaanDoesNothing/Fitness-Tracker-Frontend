@@ -49,16 +49,27 @@ export default defineComponent({
     let messages = ref([]);
     let messageInput = ref("");
 
-    fetchMessages({token: user.token}).then(res => {
-      messages.value = res;
-
-      client.emit("messagedReceived", true);
-    }).then(scrollToBottom);
-
     client.on("connect", () => {
       console.log("Connected");
       client.emit("setUser", {token: user.token});
     });
+
+    client.on("setMessages", (data) => {
+      messages.value = data;
+
+      client.emit("messagedReceived", true);
+    });
+
+    client.on("message", (data) => {
+      console.log(data);
+
+      messages.value.push(data);
+
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
+    });
+
 
     function sendMessage() {
       console.log(messageInput.value);
@@ -75,15 +86,6 @@ export default defineComponent({
 
       container.scrollTop = container.scrollHeight;
     }
-
-    client.on("message", (data) => {
-      console.log(data);
-      messages.value.push(data);
-
-      setTimeout(() => {
-        scrollToBottom();
-      }, 500);
-    });
 
     return {messageInput, sendMessage, messages: computed(() => {
         return messages.value;
