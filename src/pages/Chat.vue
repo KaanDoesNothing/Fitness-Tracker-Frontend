@@ -50,7 +50,7 @@ export default defineComponent({
     let messageInput = ref("");
 
     fetchMessages({token: user.token}).then(res => {
-      // messages.value = res;
+      messages.value = res;
 
       client.emit("messagedReceived", true);
     }).then(scrollToBottom);
