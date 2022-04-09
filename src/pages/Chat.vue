@@ -51,6 +51,8 @@ export default defineComponent({
 
     fetchMessages({token: user.token}).then(res => {
       messages.value = res;
+
+      client.emit("messagedReceived", true);
     }).then(scrollToBottom);
 
     client.on("connect", () => {
@@ -75,6 +77,7 @@ export default defineComponent({
     }
 
     client.on("message", (data) => {
+      console.log(data);
       messages.value.push(data);
 
       setTimeout(() => {
