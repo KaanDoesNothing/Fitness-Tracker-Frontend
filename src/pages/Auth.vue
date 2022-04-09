@@ -6,6 +6,11 @@
     </div>
     <form class="ui form" :class="{'inverted': user.isDarkMode}" @submit.prevent="handleForm">
       <div class="field">
+        <label>{{ $t("authentication.username") }}</label>
+        <input name="username" required="required" v-model="form.username"/>
+      </div>
+
+      <div class="field">
         <label :class="{'text-white': user.isDarkMode}">{{ $t("authentication.email") }}</label>
         <input name="email" type="email" required="required" v-model="form.email"/>
       </div>
@@ -39,7 +44,7 @@ export default defineComponent({
 
     const type = ref("signup");
     const error = ref(undefined);
-    const form = ref({email: "", password: ""});
+    const form = ref({email: "", password: "", username: ""});
 
     async function handleForm() {
       this.error = undefined;

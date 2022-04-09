@@ -30,7 +30,8 @@ export let locales = {
             existingAccount: "Already have an account, click here!",
             noExistingAccount: "Don't have an account yet?",
             email: "Email",
-            password: "Password"
+            password: "Password",
+            username: "Username"
         },
         tabs: {
             overview: {

@@ -8,7 +8,7 @@
 
     <div style="max-height: 400px !important; overflow-y: scroll;" id="chatBox">
 
-      <FMessage author="Unknown" :content="message.content" v-for="message in messages"></FMessage>
+      <FMessage v-for="message in messages" :author="message.user.name" :content="message.content"></FMessage>
     </div>
 
     <br>
